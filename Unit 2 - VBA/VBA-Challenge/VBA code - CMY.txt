@@ -64,7 +64,6 @@ sym = sym - 1
         
         'fill in remaining array datapoints
         closevalue(Arrayposition) = ws.Cells(Placeholder, 6).Value
-        TSV(Arrayposition) = ws.Cells(Placeholder, 7).Value
         'calculate remaining array datapoints
         YearlyChange(Arrayposition) = closevalue(Arrayposition) - openvalue(Arrayposition)
         If openvalue(Arrayposition) = 0 Then
