@@ -1,0 +1,145 @@
+Sub GetData()
+
+
+'Loop Through all Sheets
+
+For Each ws In Worksheets
+
+    'Identifying number of potential ticker symbols
+    Dim sym As Long
+    Dim i As Long
+
+
+    sym = 0
+    i = 2
+    Do While ws.Cells(i, 1).Value <> ""
+        If ws.Cells(i, 1).Value <> ws.Cells(i + 1, 1).Value Then
+            sym = sym + 1
+        End If
+   
+        i = i + 1
+    Loop
+sym = sym - 1
+
+    'Setting up all values as arrays for pulling data from sheet
+    Dim Ticker() As String
+    Dim openvalue() As Double
+    Dim closevalue() As Double
+    Dim PercentChange() As Double
+    Dim TSV() As Double
+    Dim TotSV As Double
+    Dim YearlyChange() As Double
+    Dim Placeholder As Long
+    Dim Arrayposition As Integer
+    Dim mxinc, mxdec, grtv As Long
+    Dim mxincpos, mxdecpos, grtvpos As Long
+
+    'Reset Ticker array to number of possible elements in sheet
+
+    ReDim Ticker(sym)
+    ReDim openvalue(sym)
+    ReDim closevalue(sym)
+    ReDim PercentChange(sym)
+    ReDim TSV(sym)
+    ReDim YearlyChange(sym)
+
+    'fill in array with all stock information
+
+    Placeholder = 2
+    Arrayposition = 0
+
+    Do While ws.Cells(Placeholder, 1).Value <> ""
+
+        Ticker(Arrayposition) = ws.Cells(Placeholder, 1).Value
+        openvalue(Arrayposition) = ws.Cells(Placeholder, 3).Value
+        
+        'get to last datapoint while calculating total stock volume
+        TotSV = 0
+        Do While ws.Cells(Placeholder, 1).Value = ws.Cells(Placeholder + 1, 1).Value
+                TotSV = TotSV + ws.Cells(Placeholder, 7).Value
+            Placeholder = Placeholder + 1
+        Loop
+        TSV(Arrayposition) = TotSV + ws.Cells(Placeholder, 7).Value
+        
+        
+        'fill in remaining array datapoints
+        closevalue(Arrayposition) = ws.Cells(Placeholder, 6).Value
+        TSV(Arrayposition) = ws.Cells(Placeholder, 7).Value
+        'calculate remaining array datapoints
+        YearlyChange(Arrayposition) = closevalue(Arrayposition) - openvalue(Arrayposition)
+        If openvalue(Arrayposition) = 0 Then
+            PercentChange(Arrayposition) = YearlyChange(Arrayposition)
+        Else
+            PercentChange(Arrayposition) = YearlyChange(Arrayposition) / openvalue(Arrayposition)
+        End If
+        'complete all the above for the next ticker
+        Arrayposition = Arrayposition + 1
+        Placeholder = Placeholder + 1
+
+    Loop
+
+    'print out array datapoints
+    ws.Range("i1").Value = "Ticker"
+    ws.Range("j1").Value = "Yearly Change"
+    ws.Range("k1").Value = "Percent Change"
+    ws.Range("l1").Value = "Total Stock Volume"
+
+    For i = 0 To sym
+        ws.Cells(i + 2, 9) = Ticker(i)
+        ws.Cells(i + 2, 10) = YearlyChange(i)
+        If YearlyChange(i) >= 0 Then
+            ws.Cells(i + 2, 10).Interior.ColorIndex = 4
+            Else
+            ws.Cells(i + 2, 10).Interior.ColorIndex = 3
+        End If
+        ws.Cells(i + 2, 11) = PercentChange(i)
+        ws.Cells(i + 2, 11).NumberFormat = "0.00%"
+        ws.Cells(i + 2, 12) = TSV(i)
+    Next i
+
+
+    'find largest numbers
+
+    mxinc = 0
+    mxdec = 0
+    grtv = 0
+    mxincpos = 0
+    mxdecpos = 0
+    mxgrtv = 0
+
+    For i = 0 To sym
+        If mxinc < PercentChange(i) Then
+            mxinc = PercentChange(i)
+            mxincpos = i
+        End If
+        If mxdec > PercentChange(i) Then
+            mxdec = PercentChange(i)
+            mxdecpos = i
+        End If
+        If mxgrtv < TSV(i) Then
+            mxgrtv = TSV(i)
+            mxgrtvpos = i
+        End If
+    Next i
+
+    'print out largest numbers
+    ws.Range("n2").Value = "Greatest % Increase"
+    ws.Range("n3").Value = "Greatest % Decrease"
+    ws.Range("n4").Value = "Greatest Total Volume"
+    ws.Range("o1").Value = "Ticker"
+    ws.Range("p1").Value = "Value"
+   
+    ws.Range("o2").Value = Ticker(mxincpos)
+    ws.Range("o3").Value = Ticker(mxdecpos)
+    ws.Range("o4").Value = Ticker(mxgrtvpos)
+
+    ws.Range("p2").Value = mxinc
+    ws.Range("p3").Value = mxdec
+    ws.Range("p4").Value = mxgrtv
+
+    ws.Range("p2").NumberFormat = "0.00%"
+    ws.Range("p3").NumberFormat = "0.00%"
+
+    Next ws
+   
+End Sub
