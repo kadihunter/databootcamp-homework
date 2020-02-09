@@ -1,0 +1,102 @@
+<DOCTYPE html>
+    <html lang="en-us">
+        <head>
+            <meta charset = "UTF-8">
+            <title>Weather Analyses</title>
+                 
+            <link rel="stylesheet" href="./bootstrap.min.css" > 
+            <link rel="stylesheet" href="./static.css" > 
+    
+        </head>
+        
+         <body>
+            <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+                <div class = "container">
+                    <div class = "col-9">
+                        <a class="navbar-brand" href="index.html">Latitude</a>
+                    </div> 
+                       
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <button type="button" class="btn btn-success">Plots</button>
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu show" aria-labelledby="btnGroupDrop1" style>
+                                <a class="dropdown-item" href="MaxTemp.html">vs Max Temperature</a>
+                                <a class="dropdown-item" href="Humidity.html">vs Humdity</a>
+                                <a class="dropdown-item" href="Cloudiness.html">vs Cloudiness</a>
+                                <a class="dropdown-item" href="WindSpeed.html">vs Wind Speed</a>
+                            </div>
+                        </div>
+                    </div>
+                      
+    
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="Comparisons.html">Comparison</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Data.html">Data</a>
+                            </li>
+                       
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+    
+    
+            <div class = "container">
+                <div class="row">
+                    <div class = "col-lg-6 ">
+                        <h3>
+                            Max Temperature
+                        </h3>
+                        <hr></hr>
+                        <a href="MaxTemp.html"> <img height="200" src="assets/images/Fig1.png"> </a>
+                        <p>
+                            The temperature decreases the further away north you are on December 5, 2019.
+                            On this particular day it is shown that there were no cities warmer than 10C north of the 60 latitude mark.
+                            Conversely, there were no cities colder than 0C south of the 20 latitude mark. 
+                            This would indicate that the world was moving towards winter in the northern hemisphere and summer in the southern hemisphere.
+                            The warmest point in the world was around -30 latitude, where the coldest point in the world was around 65 latitude.
+                        </p>
+                        <p>
+                           
+                        </p>
+                    
+                    </div>
+                    <div class = "col-lg-6">
+                        <h3>
+                            Visualizations
+                        </h3>
+                        <hr></hr>
+                        <div class = "container">
+                            <div class = "row">
+                                <div class = "col-md-6 frame">
+                                    <a href="MaxTemp.html"> <img height="160" src="assets/images/Fig1.png"> </a>
+                                </div>
+                                <div class = "col-md-6">
+                                    <a href="Humidity.html"> <img height="160" src="assets/images/Fig2.png"> </a>
+                                </div>
+                            </div>
+    
+                            <div class = "row">
+                                <div class = "col-md-6">
+                                    <a href="Cloudiness.html"> <img height="160" src="assets/images/Fig3.png"> </a>
+                                </div>
+                                <div class = "col-md-6">
+                                    <a href="WindSpeed.html"> <img height="160" src="assets/images/Fig4.png"> </a>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+    
+                </div>
+     
+            </div>
+    
+        
+        </body>
+        
+    </html> 

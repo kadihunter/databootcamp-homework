@@ -1,0 +1,56 @@
+
+
+h3{
+    padding-top: 50px;
+}
+
+h4{
+    padding-top: 20px;
+    text-align: center;
+    color: blue;
+
+}
+
+tr{
+    text-align: center;
+
+}
+
+
+table {
+    border-collapse: collapse;
+    border: 2px black solid;
+    font: 12px sans-serif;
+    }
+td {
+    border: 1px black solid;
+    padding: 5px;
+}
+
+.frame {
+
+    border:1px solid blue;
+}
+
+
+
+
+/*  h1{
+    text-align:left;
+    color: rgb(6, 63, 6);
+    background-color: rgb(117, 113, 113);
+}
+
+h2{
+    text-align: left;
+    color: brown;
+}
+
+h3{
+    color: fuchsia;
+}
+
+img{
+    box-shadow: goldenrod 8px 8px 4px;
+
+}
