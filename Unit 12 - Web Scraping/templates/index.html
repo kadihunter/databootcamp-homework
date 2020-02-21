@@ -1,0 +1,106 @@
+<DOCTYPE html>
+    <html lang="en-us">
+        <head>
+            <meta charset = "UTF-8">
+            <title>Ticket to Mars</title>
+              <!--  Bring in our bootstrap stylesheet -->
+            <link rel="stylesheet" href="./static/bootstrap.min.css" > 
+            <link rel="stylesheet" href="./static/static.css" > 
+
+            
+    
+        </head>
+        
+        <body>
+                <div class="jumbotron">
+                    <h1 class="display-3">Mission to Mars</h1>
+                    <hr class="my-4">
+                    <p class="lead">
+                      <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
+                    </p>
+                </div>
+                <div class = "container">
+                    <div class = "row">
+                        <div class = "col">
+                            <h2>
+                                Latest Mars News
+                            </h2>
+                            <h3>
+                                {{mars.news_data.News_Title}}
+                            </h3>
+                            <hr>
+                            <p>
+                                {{mars.news_data.News_Paragraph}} 
+                            </p>
+                        </div>
+                    </div>
+                    <div class = "row">
+                        <div class = "col">
+                            <h2>
+                                Featured Mars Image
+                            </h2>
+                            <img src={{mars.jpl_image}} height="400" width ="800">
+                        </div>
+                        <div class = "col">
+                            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                                <div class="card-header">Current Weather on Mars</div>
+                                <div class="card-body">
+                                  <p class="card-text">{{mars.mars_tweets}}</p>
+                                </div>
+                              </div>
+                            <div class = "row">
+                                <div class = "col">
+                                    <h2>
+                                        Mars Facts
+                                    </h2>
+                                    <table>
+                                        {{mars.mars_facts}}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "row">
+                        <div class = "col">
+                            <h1> 
+                                Mars Hemispheres
+                            </h1>
+                        </div>
+                    </div>
+                    <div class = "row">
+                        <div class = "col lg-6">
+                            <img src={{mars.mars_hemisphere[0].img_url}} height="400" width ="400" >
+                            <h3>
+                                {{mars.mars_hemisphere[0].title}}
+                            </h3>
+                        </div>
+                        <div class = "col lg-6">
+                            <img src={{mars.mars_hemisphere[1].img_url}} height="400" width ="400" >
+                            <h3>
+                                {{mars.mars_hemisphere[1].title}}
+                            </h3>
+                        </div>
+
+                    </div>
+                    <div class = "row">
+                        <div class = "col lg-6">
+                            <img src={{mars.mars_hemisphere[2].img_url}} height="400" width ="400" >
+                            <h3>
+                                {{mars.mars_hemisphere[2].title}}
+                            </h3>
+                        </div>
+                        <div class = "col lg-6">
+                            <img src={{mars.mars_hemisphere[2].img_url}} height="400" width ="400" >
+                            <h3>
+                                {{mars.mars_hemisphere[2].title}}
+                            </h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+        </body>
+    </html>
